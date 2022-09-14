@@ -10,7 +10,7 @@
 		"clear": "rd /s /q dist",
 		"predeploy": "npm run build",
 		"deploy": "gh-pages -d build",
-		"homepage": "https://programdig.github.io/game/"
+		"homepage": "https://programdig.github.io/game/dist/"
 	},
 	"keywords": [],
 	"author": "",
