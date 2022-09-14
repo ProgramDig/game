@@ -1,3 +1,6 @@
+import './index.html'
+import './index.scss'
+
 const startBlock = document.querySelector(".start");
 const gameArea = document.querySelector(".game");
 const startGame = document.querySelector(".start-button");
