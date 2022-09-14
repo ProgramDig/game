@@ -222,7 +222,7 @@ function stopGame() {
   generateResults();
 }
 
-// func generate results for table
+// func generate results for table | BADPRACTICE
 function generateResults() {
   resultArr.push(resultObj);
 
