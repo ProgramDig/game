@@ -95,48 +95,11 @@ const shuffle = (arr) => {
   return arr.sort(() => Math.round(Math.random() * 25) - 13);
 };
 
+// fix
 function generateStyle() {
-  fontWeigthArray = [100, 200, 300, 400, 500, 600, 700, 800, 900];
-  fontSizeArray = [
-    "10px",
-    "11px",
-    "12px",
-    "13px",
-    "14px",
-    "15px",
-    "16px",
-    "17px",
-    "18px",
-    "19px",
-    "20px",
-    "11px",
-    "12px",
-    "13px",
-    "14px",
-    "25px",
-  ];
-  colorArray = [
-    "red",
-    "blue",
-    "green",
-    "aqua",
-    "coral",
-    "crimson",
-    "darkmagenta",
-    "darkgoldenrod",
-    "darkkhaki",
-    "forestgreen",
-    "grey",
-    "hotpink",
-    "silver",
-    "wheat",
-  ];
-
-  let fontWeigth =
-    fontWeigthArray[Math.round(Math.random() * fontWeigthArray.length - 1)];
-  let fontSize =
-    fontSizeArray[Math.round(Math.random() * fontSizeArray.length - 1)];
-  let color = colorArray[Math.round(Math.random() * colorArray.length - 1)];
+  let fontWeigth = randomFontWeigth();
+  let fontSize = randomFontSize();
+  let color = randomColor();
   let style = `
 	font-weight:${fontWeigth};
 	font-size:${fontSize};
@@ -145,8 +108,38 @@ function generateStyle() {
   console.log(style); // log
   return style;
 }
+function randomFontWeigth() {
+  const MAX_SIZE = 9;
+  const MIN_SIZE = 1;
+  const WEIGHT_COUNT = 100;
 
-function addStyle() {}
+  let fontWeigth = `${
+    Math.round(Math.random() * (MAX_SIZE - MIN_SIZE) + MIN_SIZE) * WEIGHT_COUNT
+  }`;
+  return fontWeigth;
+}
+
+function randomFontSize() {
+  const MAX_SIZE = 30;
+  const MIN_SIZE = 14;
+
+  let fontSize = `${Math.round(
+    Math.random() * (MAX_SIZE - MIN_SIZE) + MIN_SIZE
+  )}px`;
+  return fontSize;
+}
+
+function randomColor() {
+  const COLOR_COUNT = 256;
+  let color = "";
+
+  let red = Math.floor(Math.random() * COLOR_COUNT);
+  let green = Math.floor(Math.random() * COLOR_COUNT);
+  let blue = Math.floor(Math.random() * COLOR_COUNT);
+
+  color = `#${red.toString(16)}${green.toString(16)}${blue.toString(16)}`;
+  return color;
+}
 
 function check(item) {
   if (gameObj.checkArray.length === 0 && item == 1) {
