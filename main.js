@@ -5,11 +5,9 @@ const restartGame = document.querySelector(".restart-game");
 const gameBlock = document.querySelector(".block");
 const resultMessage = document.querySelector(".check");
 
+
 let gameObj = {
-  numItemArray: [
-    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
-    22, 23, 24, 25,
-  ],
+  numItemArray: generateGameArray(),
   checkArray: [],
   isBuild: false,
   isWin: false,
@@ -24,6 +22,15 @@ let resultObj = {
 
 let resultArr = [];
 
+function generateGameArray() {
+  let BLOCK_COUNT = 25;
+  let array = [];
+  for (let i = 1; i <= BLOCK_COUNT; i++) {
+    array.push(i);
+  }
+  return array;
+}
+
 startGame.addEventListener("click", () => {
   if (!gameObj.isBuild) {
     startBlock.style = "visibility: hidden; position: fixed;";
@@ -36,10 +43,7 @@ restartGame.addEventListener("click", () => {
   resultMessage.style = "visibility: hidden;";
   clearInterval(gameObj.timerId);
   gameObj = {
-    numItemArray: [
-      1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
-      22, 23, 24, 25,
-    ],
+    numItemArray: generateGameArray(),
     checkArray: [],
     isBuild: false,
     isWin: false,
@@ -95,7 +99,6 @@ const shuffle = (arr) => {
   return arr.sort(() => Math.round(Math.random() * 25) - 13);
 };
 
-// fix
 function generateStyle() {
   let fontWeigth = randomFontWeigth();
   let fontSize = randomFontSize();
