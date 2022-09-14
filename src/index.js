@@ -1,10 +1,11 @@
-import './index.html'
-import './index.scss'
+import "./index.html";
+import "./index.scss";
 
 const startBlock = document.querySelector(".start");
 const gameArea = document.querySelector(".game");
 const startGame = document.querySelector(".start-button");
 const restartGame = document.querySelector(".restart-game");
+const viewStat = document.querySelector(".view-statistics");
 const gameBlock = document.querySelector(".block");
 const resultMessage = document.querySelector(".check");
 
@@ -57,6 +58,10 @@ restartGame.addEventListener("click", () => {
     isWin: false,
     timerId: 0,
   };
+
+  viewStat.addEventListener("click", () => {
+	// view statistics
+  });
 
   resultObj = {
     time: 60,
@@ -151,12 +156,23 @@ function randomFontSize() {
 
 // func generate random color
 function randomColor() {
+  const NO_WHITE = 80;
   const COLOR_COUNT = 256;
   let color = "";
 
   let red = Math.floor(Math.random() * COLOR_COUNT);
   let green = Math.floor(Math.random() * COLOR_COUNT);
   let blue = Math.floor(Math.random() * COLOR_COUNT);
+
+  if (red < NO_WHITE) {
+    red += red * 2;
+  }
+  if (green < NO_WHITE) {
+    green += green * 2;
+  }
+  if (blue < NO_WHITE) {
+    blue += blue * 2;
+  }
 
   color = `#${red.toString(16)}${green.toString(16)}${blue.toString(16)}`;
   return color;
@@ -189,6 +205,7 @@ function timer() {
   console.log("Timer started.");
   let id = setInterval(() => {
     if (time == 0) {
+      resultObj.time = 0;
       document.querySelector("#time").innerHTML = 0;
       gameObj.isWin = false;
       stopGame();
@@ -211,12 +228,12 @@ function stopGame() {
 
   switch (gameObj.isWin) {
     case false:
-      resultMessage.innerHTML = "You Lose";
+      resultMessage.innerHTML = "Lose";
       resultMessage.style = "visibility: visible;";
       console.log("GAME OVER!");
       break;
     case true:
-      resultMessage.innerHTML = "You Win";
+      resultMessage.innerHTML = "Win";
       resultMessage.style = "visibility: visible;";
       console.log("YOU WIN!");
       break;
