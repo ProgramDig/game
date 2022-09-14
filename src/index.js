@@ -1,3 +1,6 @@
+import './index.html'
+import './index.scss'
+
 const startBlock = document.querySelector(".start");
 const gameArea = document.querySelector(".game");
 const startGame = document.querySelector(".start-button");
@@ -222,7 +225,7 @@ function stopGame() {
   generateResults();
 }
 
-// func generate results for table
+// func generate results for table | BADPRACTICE
 function generateResults() {
   resultArr.push(resultObj);
 
