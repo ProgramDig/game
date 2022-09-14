@@ -5,7 +5,7 @@ const restartGame = document.querySelector(".restart-game");
 const gameBlock = document.querySelector(".block");
 const resultMessage = document.querySelector(".check");
 
-
+// Game object
 let gameObj = {
   numItemArray: generateGameArray(),
   checkArray: [],
@@ -14,14 +14,17 @@ let gameObj = {
   timerId: 0,
 };
 
+// Game results object
 let resultObj = {
   time: 60,
   result: "",
   isBest: false,
 };
 
+// Results array for the table
 let resultArr = [];
 
+// func generate array for game
 function generateGameArray() {
   let BLOCK_COUNT = 25;
   let array = [];
@@ -31,6 +34,7 @@ function generateGameArray() {
   return array;
 }
 
+// event click to start game
 startGame.addEventListener("click", () => {
   if (!gameObj.isBuild) {
     startBlock.style = "visibility: hidden; position: fixed;";
@@ -39,6 +43,7 @@ startGame.addEventListener("click", () => {
   }
 });
 
+// event click to restart game
 restartGame.addEventListener("click", () => {
   resultMessage.style = "visibility: hidden;";
   clearInterval(gameObj.timerId);
@@ -64,6 +69,7 @@ restartGame.addEventListener("click", () => {
   console.log("remove");
 });
 
+// func build area game
 function build() {
   let item;
   let shuffleArr = shuffle(gameObj.numItemArray);
@@ -95,10 +101,15 @@ function build() {
   gameObj.isBuild = true;
 }
 
+// func shuffle game array
 const shuffle = (arr) => {
-  return arr.sort(() => Math.round(Math.random() * 25) - 13);
+  const MAX_COUNT = 25;
+  const MIN_COUNT = 13;
+
+  return arr.sort(() => Math.round(Math.random() * MAX_COUNT) - MIN_COUNT);
 };
 
+// func genarate style for items
 function generateStyle() {
   let fontWeigth = randomFontWeigth();
   let fontSize = randomFontSize();
@@ -111,6 +122,8 @@ function generateStyle() {
   console.log(style); // log
   return style;
 }
+
+// func generate random font-weigth
 function randomFontWeigth() {
   const MAX_SIZE = 9;
   const MIN_SIZE = 1;
@@ -122,6 +135,7 @@ function randomFontWeigth() {
   return fontWeigth;
 }
 
+// func generate random font-size
 function randomFontSize() {
   const MAX_SIZE = 30;
   const MIN_SIZE = 14;
@@ -132,6 +146,7 @@ function randomFontSize() {
   return fontSize;
 }
 
+// func generate random color
 function randomColor() {
   const COLOR_COUNT = 256;
   let color = "";
@@ -144,6 +159,7 @@ function randomColor() {
   return color;
 }
 
+// func check click for item
 function check(item) {
   if (gameObj.checkArray.length === 0 && item == 1) {
     document.getElementById(item).classList.add("green");
@@ -164,6 +180,7 @@ function check(item) {
   }
 }
 
+// func timer
 function timer() {
   let time = 60;
   console.log("Timer started.");
@@ -181,6 +198,7 @@ function timer() {
   gameObj.timerId = id;
 }
 
+// func stop game
 function stopGame() {
   clearInterval(gameObj.timerId);
 
@@ -204,6 +222,7 @@ function stopGame() {
   generateResults();
 }
 
+// func generate results for table
 function generateResults() {
   resultArr.push(resultObj);
 
