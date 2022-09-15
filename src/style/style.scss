@@ -129,15 +129,15 @@
 }
 
 .table {
+	visibility: hidden;
 	padding: 20px;
 	width: 160px;
 	border-radius: 8px;
-	border: 2px solid rgb(167, 152, 203);
+	// border: 2px solid rgb(167, 152, 203);
 }
 
 table,
 th {
-	visibility: hidden;
 	border: 2px solid;
 	border-radius: 4px;
 }
