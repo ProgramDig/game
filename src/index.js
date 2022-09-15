@@ -23,6 +23,7 @@ let resultObj = {
   time: 60,
   result: "",
   isBest: false,
+  isVisible: false
 };
 
 // Results array for the table
@@ -60,7 +61,16 @@ restartGame.addEventListener("click", () => {
   };
 
   viewStat.addEventListener("click", () => {
-	// view statistics
+	
+    if (resultObj.isVisible) {
+      document.querySelector(".table").style = "visibility: hidden;";
+		resultObj.isVisible = false;
+    } else {
+      document.querySelector(".table").style = "visibility: visible;";
+		resultObj.isVisible = true;
+    }
+    console.log("view");
+    // view statistics
   });
 
   resultObj = {
